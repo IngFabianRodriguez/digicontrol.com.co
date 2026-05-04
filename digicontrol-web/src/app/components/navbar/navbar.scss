@@ -90,8 +90,8 @@
     border-radius: 22px;                        // Apple squircle
 
     box-shadow:
-      0 4px 30px rgba(0, 0, 0, 0.06),
-      0 6px 20px rgba(0, 0, 0, 0.06),  // subtle bottom shadow for depth on white backgrounds
+      0 4px 30px rgba(0, 0, 0, 0.10),
+      0 8px 24px rgba(0, 0, 0, 0.12),  // physical button depth
       0 0 1px 0 rgba(255, 255, 255, 0.5) inset;
 
     transition:
@@ -100,11 +100,12 @@
       background 0.35s,
       width 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
 
-    /* Hover: press-down effect */
+    /* Hover: press-down effect — physical button pressed */
     &:hover {
       transform: translateY(2px);
       box-shadow:
-        0 2px 16px rgba(0, 0, 0, 0.08),
+        0 2px 12px rgba(0, 0, 0, 0.12),
+        0 4px 12px rgba(0, 0, 0, 0.08),
         0 0 1px 0 rgba(255, 255, 255, 0.5) inset;
     }
 
