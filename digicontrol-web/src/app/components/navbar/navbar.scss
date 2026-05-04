@@ -90,8 +90,8 @@
     border-radius: 22px;                        // Apple squircle
 
     box-shadow:
-      0 4px 30px rgba(0, 0, 0, 0.10),
-      0 8px 24px rgba(0, 0, 0, 0.12),  // physical button depth
+      0 4px 30px rgba(0, 0, 0, 0.18),
+      0 10px 30px rgba(0, 0, 0, 0.20),  // physical button depth
       0 0 1px 0 rgba(255, 255, 255, 0.5) inset;
 
     transition:
@@ -104,8 +104,8 @@
     &:hover {
       transform: translateY(2px);
       box-shadow:
-        0 2px 12px rgba(0, 0, 0, 0.12),
-        0 4px 12px rgba(0, 0, 0, 0.08),
+        0 2px 12px rgba(0, 0, 0, 0.20),
+        0 4px 12px rgba(0, 0, 0, 0.16),
         0 0 1px 0 rgba(255, 255, 255, 0.5) inset;
     }
 
