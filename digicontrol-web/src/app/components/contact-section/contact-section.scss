@@ -1,0 +1,202 @@
+.contact {
+  background: var(--bg-secondary);
+  transition: background 0.4s;
+
+  &__header {
+    text-align: center;
+    max-width: 540px;
+    margin: 0 auto clamp(40px, 7vw, 72px);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  &__title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    color: var(--text-primary);
+    transition: color 0.4s;
+  }
+
+  &__subtitle {
+    font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    margin: 0;
+    transition: color 0.4s;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: clamp(32px, 5vw, 64px);
+    align-items: start;
+
+    @media (max-width: 900px) { grid-template-columns: 1fr; }
+  }
+
+  &__info { display: flex; flex-direction: column; gap: 24px; }
+
+  &__info-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__info-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: var(--surface-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 16px;  // Apple Squircle
+    padding: 16px 18px;
+    transition: background 0.4s, border-color 0.3s;
+
+    &:hover { border-color: var(--border-default); }
+  }
+
+  &__info-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+
+  &__info-label {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    margin-bottom: 3px;
+    transition: color 0.4s;
+  }
+
+  &__info-value {
+    display: block;
+    font-size: 0.88rem;
+    color: var(--text-primary);
+    font-weight: 500;
+    line-height: 1.4;
+    transition: color 0.4s;
+  }
+
+  &__info-link {
+    display: block;
+    font-size: 0.88rem;
+    color: var(--text-accent);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s;
+
+    &:hover { text-decoration: underline; }
+  }
+
+  &__map iframe {
+    width: 100%;
+    border-radius: 16px;
+    border: 1px solid var(--border-subtle);
+    transition: border-color 0.4s;
+  }
+
+  &__form-card {
+    background: var(--surface-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 24px;
+    padding: clamp(28px, 4vw, 44px);
+    box-shadow: var(--shadow-md);
+    transition: background 0.4s, border-color 0.3s, box-shadow 0.4s;
+  }
+
+  &__form-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.025em;
+    margin-bottom: 4px;
+    transition: color 0.4s;
+  }
+
+  &__form-subtitle {
+    font-size: 0.82rem;
+    color: var(--text-tertiary);
+    margin-bottom: 24px;
+    line-height: 1.5;
+    transition: color 0.4s;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  &__form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+
+    @media (max-width: 560px) { grid-template-columns: 1fr; }
+  }
+
+  &__form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      transition: color 0.4s;
+    }
+
+    ::ng-deep .p-inputtext,
+    ::ng-deep .p-textarea {
+      width: 100%;
+      border: 1.5px solid var(--border-default);
+      border-radius: 12px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      padding: 11px 14px;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      transition: border-color 0.25s, box-shadow 0.25s, background 0.4s, color 0.4s;
+
+      &:focus {
+        border-color: var(--text-accent);
+        box-shadow: 0 0 0 4px rgba(41, 151, 255, 0.12);
+        outline: none;
+      }
+
+      &::placeholder {
+        color: var(--text-tertiary);
+        [data-theme="dark"] & { color: rgba(255, 255, 255, 0.35); }
+      }
+    }
+  }
+
+  &__submit {
+    width: 100%;
+    background: var(--text-accent);
+    border: none;
+    border-radius: 980px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 15px;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+
+    &:hover {
+      background: var(--text-accent2);
+      transform: scale(1.01);
+      box-shadow: 0 8px 24px rgba(41, 151, 255, 0.3);
+    }
+
+    &:active { transform: scale(0.99); }
+  }
+}

@@ -1,0 +1,76 @@
+.clients {
+  background: var(--bg-secondary);
+  transition: background 0.4s;
+
+  &__header {
+    text-align: center;
+    max-width: 520px;
+    margin: 0 auto clamp(40px, 7vw, 72px);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  &__title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    color: var(--text-primary);
+    transition: color 0.4s;
+  }
+
+  &__subtitle {
+    font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    margin: 0;
+    transition: color 0.4s;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 12px;
+
+    @media (max-width: 1024px) { grid-template-columns: repeat(4, 1fr); }
+    @media (max-width: 560px)  { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  &__logo {
+    background: var(--surface-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 20px;  // Apple Squircle
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80px;
+    transition:
+      transform 0.3s,
+      box-shadow 0.3s,
+      background 0.4s,
+      border-color 0.3s;
+
+    &:hover {
+      transform: scale(1.04);
+      box-shadow: var(--shadow-md);
+      border-color: var(--border-default);
+    }
+
+    img {
+      max-width: 100%;
+      max-height: 44px;
+      object-fit: contain;
+      filter: grayscale(100%) opacity(0.45);
+      transition: filter 0.3s, opacity 0.3s;
+    }
+
+    &:hover img {
+      filter: none;
+      opacity: 1;
+    }
+  }
+}

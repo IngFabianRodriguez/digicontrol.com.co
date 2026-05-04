@@ -1,0 +1,421 @@
+/* ── Top Bar ─────────────────────────────────── */
+.topbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1002;
+  background: var(--bg-navy);
+  height: 38px;
+  display: flex;
+  align-items: center;
+  transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1),
+              opacity 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+
+  &--scrolled {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &__inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 max(24px, 5vw);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__location {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.04em;
+  }
+
+  &__dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #34c759;
+    animation: dc-pulse 2.4s ease-in-out infinite;
+  }
+
+  &__contact {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    transition: color 0.2s;
+    &:hover { color: rgba(255, 255, 255, 0.85); }
+  }
+}
+
+@keyframes dc-pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(52, 199, 89, 0.4); }
+  50%       { opacity: 0.7; box-shadow: 0 0 0 5px rgba(52, 199, 89, 0); }
+}
+
+/* ── Nav — Floating Glass Capsule ─────────────── */
+.nav {
+  position: fixed;
+  top: 38px; left: 0; right: 0;
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 max(24px, 5vw);
+  transition: top 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+
+  /* Scrolled: stays glass, moves up to top:0 */
+  &--scrolled {
+    top: 0;
+  }
+
+  &__inner {
+    /* Apple glassmorphism — always visible */
+    width: 90%;                     // 90% viewport width desktop
+    max-width: 1280px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 0 20px;                // breathing room on sides
+
+    background: rgba(255, 255, 255, 0.68);   // Apple glass
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+
+    border: 1px solid rgba(255, 255, 255, 0.4);  // inner highlight
+    border-radius: 22px;                        // Apple squircle
+
+    box-shadow:
+      0 4px 30px rgba(0, 0, 0, 0.06),
+      0 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+
+    transition:
+      transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+      box-shadow 0.3s,
+      background 0.35s,
+      width 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+
+    /* Hover: press-down effect */
+    &:hover {
+      transform: translateY(2px);
+      box-shadow:
+        0 2px 16px rgba(0, 0, 0, 0.08),
+        0 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+    }
+
+    &:active {
+      transform: translateY(2px) scale(0.99);
+    }
+
+    /* Mobile: full width */
+    @media (max-width: 768px) {
+      width: 100%;
+      border-radius: 18px;
+    }
+
+    /* Dark mode glass */
+    [data-theme="dark"] & {
+      background: rgba(28, 28, 30, 0.72);
+      border-color: rgba(255, 255, 255, 0.12);
+      box-shadow:
+        0 4px 30px rgba(0, 0, 0, 0.35),
+        0 0 1px 0 rgba(255, 255, 255, 0.15) inset;
+    }
+
+    /* Tablet & Mobile: logo left, CTA+burger right */
+    @media (max-width: 768px) {
+      justify-content: space-between;
+    }
+  }
+
+  /* Logo */
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    text-decoration: none;
+    flex-shrink: 0;
+    transition: opacity 0.2s;
+    &:hover { opacity: 0.85; }
+  }
+
+  /* Desktop nav links */
+  &__links {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex: 1;
+    justify-content: center;
+
+    @media (max-width: 768px) { display: none; }
+  }
+
+  &__logo-icon {
+    font-size: 1.25rem;
+    color: var(--text-accent);
+    filter: drop-shadow(0 0 8px rgba(0, 113, 227, 0.5));
+  }
+
+  &__logo-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--bg-navy);  // dark on glass
+    letter-spacing: -0.025em;
+    transition: color 0.3s;
+
+    [data-theme="dark"] & {
+      color: #f5f5f7;        // light on dark glass
+    }
+  }
+
+  /* Links */
+  &__links {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    margin: 0 auto;
+    flex: 1;
+
+    @media (max-width: 768px) { display: none; }
+  }
+
+  &__link {
+    display: block;
+    padding: 7px 14px;
+    font-size: 0.83rem;
+    font-weight: 500;
+    color: var(--text-primary);  // negro fuerte en light
+    border-radius: 980px;
+    transition: color 0.2s, background 0.25s;
+
+    &:hover {
+      color: var(--text-primary);
+      background: rgba(0, 0, 0, 0.06);
+    }
+
+    &--active {
+      color: var(--text-accent) !important;
+      background: rgba(0, 113, 227, 0.1) !important;
+    }
+
+    [data-theme="dark"] & {
+      color: rgba(255, 255, 255, 0.65);
+      &:hover {
+        color: #ffffff;
+        background: rgba(255, 255, 255, 0.08);
+      }
+    }
+  }
+
+  /* Right */
+  &__right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  &__cta {
+    @media (max-width: 640px) { display: none; }
+  }
+
+  /* Burger — fino, pequeño, con color Apple accent */
+  &__burger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    width: 32px;
+    height: 32px;
+    background: rgba(0, 113, 227, 0.10);
+    border: 1.5px solid rgba(0, 113, 227, 0.25);
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 7px;
+    transition: background 0.25s, border-color 0.25s, transform 0.2s;
+
+    &:hover {
+      background: rgba(0, 113, 227, 0.18);
+      border-color: rgba(0, 113, 227, 0.45);
+      transform: scale(1.05);
+    }
+
+    &:active { transform: scale(0.95); }
+
+    span {
+      display: block;
+      width: 100%;
+      height: 1.75px;
+      background: var(--text-accent);
+      border-radius: 2px;
+      transform-origin: center;
+      transition: 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+
+    &.open {
+      background: rgba(0, 113, 227, 0.15);
+      border-color: rgba(0, 113, 227, 0.5);
+      span { background: #0071e3; }
+      span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
+      span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+      span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
+    }
+
+    @media (max-width: 768px) { display: flex; }
+  }
+
+  /* Mobile menu — se expande como dropdown debajo del nav__inner */
+  &__mobile {
+    width: 90%;
+    max-width: 1280px;
+    align-self: center;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition:
+      max-height 0.45s cubic-bezier(0.25, 0.1, 0.25, 1),
+      opacity 0.3s ease;
+
+    @media (max-width: 768px) { width: 100%; max-width: 100%; }
+
+    &--open {
+      max-height: 700px;
+      opacity: 1;
+    }
+  }
+
+  &__mobile-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 16px 20px 24px;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+    margin-top: 6px;
+
+    [data-theme="dark"] & {
+      background: rgba(28, 28, 30, 0.96);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  &__mobile-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 16px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    border-radius: 12px;
+    transition: color 0.2s, background 0.2s;
+
+    &:hover {
+      color: var(--text-accent);
+      background: rgba(0, 113, 227, 0.06);
+    }
+
+    &--active {
+      color: var(--text-accent);
+      background: rgba(0, 113, 227, 0.08);
+      font-weight: 600;
+    }
+
+    [data-theme="dark"] &:hover {
+      background: rgba(255, 255, 255, 0.06);
+    }
+  }
+
+  &__mobile-divider {
+    height: 1px;
+    background: rgba(0, 0, 0, 0.08);
+    margin: 8px 0;
+
+    [data-theme="dark"] & { background: rgba(255, 255, 255, 0.08); }
+  }
+}
+
+/* ── Theme toggle ─────────────────────────────── */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: rgba(128, 128, 128, 0.1);
+  border: 1px solid rgba(128, 128, 128, 0.15);
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: var(--text-primary);  // Always readable
+  transition: background 0.2s, transform 0.2s;
+
+  &:hover {
+    background: rgba(128, 128, 128, 0.18);
+    transform: scale(1.08);
+  }
+
+  &:active { transform: scale(0.95); }
+}
+
+/* Nav CTA button */
+.btn--nav-cta {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 18px;
+  border-radius: 980px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  background: var(--text-accent);
+  color: #ffffff;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+  white-space: nowrap;
+
+  &:hover {
+    background: #005bb5;
+    transform: scale(1.04);
+    box-shadow: 0 4px 16px rgba(0, 113, 227, 0.35);
+  }
+
+  &:active { transform: scale(0.97); }
+}
+
+/* WhatsApp button in mobile menu */
+.nav__mobile-wpp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: #25D366;
+  border: none;
+  cursor: pointer;
+  transition: background 0.25s, transform 0.2s;
+  margin-top: 4px;
+
+  &:hover {
+    background: #20bd5a;
+  }
+
+  &:active { transform: scale(0.98); }
+}

@@ -1,0 +1,132 @@
+.portfolio {
+  background: var(--bg-primary);
+  transition: background 0.4s;
+
+  &__header {
+    text-align: center;
+    max-width: 520px;
+    margin: 0 auto clamp(48px, 8vw, 80px);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    color: var(--text-primary);
+    transition: color 0.4s;
+  }
+
+  &__products {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(60px, 10vw, 120px);
+  }
+
+  &__item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(40px, 6vw, 80px);
+    align-items: center;
+
+    @media (max-width: 768px) { grid-template-columns: 1fr; gap: 32px; }
+
+    &--reverse {
+      direction: rtl;
+      > * { direction: ltr; }
+      @media (max-width: 768px) { direction: ltr; }
+    }
+  }
+
+  &__item-visual {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__item-img-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    background: var(--gradient-card);
+    border-radius: 24px;
+    padding: clamp(24px, 4vw, 48px);
+    border: 1px solid var(--border-subtle);
+    transition: background 0.4s, border-color 0.4s;
+
+    img {
+      width: 100%;
+      border-radius: 12px;
+      transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+
+    &:hover img { transform: scale(1.04); }
+  }
+
+  &__item-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__item-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    transition: color 0.4s;
+  }
+
+  &__item-lead {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.75;
+    margin: 0;
+    transition: color 0.4s;
+  }
+
+  &__item-features {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0;
+    list-style: none;
+
+    li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      transition: color 0.4s;
+
+      svg { flex-shrink: 0; margin-top: 2px; }
+    }
+  }
+
+  &__item-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 8px;
+  }
+
+  &__item-meta {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+
+    span {
+      font-size: 0.78rem;
+      color: var(--text-tertiary);
+      font-weight: 500;
+      transition: color 0.4s;
+    }
+  }
+}

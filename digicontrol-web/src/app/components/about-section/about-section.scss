@@ -1,0 +1,102 @@
+.about {
+  background: var(--bg-primary);
+  transition: background 0.4s;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(48px, 8vw, 96px);
+    align-items: center;
+
+    @media (max-width: 768px) { grid-template-columns: 1fr; gap: 48px; }
+  }
+
+  &__left {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &__title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    color: var(--text-primary);
+    transition: color 0.4s;
+  }
+
+  &__text {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin: 0;
+    transition: color 0.4s;
+
+    strong { color: var(--text-primary); }
+  }
+
+  &__pillars {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 8px;
+  }
+
+  &__pillar {
+    display: flex;
+    gap: 14px;
+    background: var(--bg-secondary);
+    border-radius: 16px;
+    padding: 18px 20px;
+    border: 1px solid var(--border-subtle);
+    transition: background 0.4s, border-color 0.3s;
+
+    &:hover { border-color: var(--border-default); }
+  }
+
+  &__pillar-icon { font-size: 1.5rem; flex-shrink: 0; margin-top: 2px; }
+
+  &__pillar-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+    transition: color 0.4s;
+  }
+
+  &__pillar-text {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin: 0;
+    transition: color 0.4s;
+  }
+
+  &__right {
+    display: flex;
+    justify-content: center;
+
+    @media (max-width: 768px) { order: -1; }
+  }
+
+  &__image-wrap {
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: var(--shadow-xl);
+    border: 1px solid var(--border-subtle);
+    transition: box-shadow 0.4s, border-color 0.4s;
+
+    img {
+      width: 100%;
+      border-radius: 24px;
+      display: block;
+      transition: transform 0.5s;
+    }
+
+    &:hover img { transform: scale(1.03); }
+  }
+}

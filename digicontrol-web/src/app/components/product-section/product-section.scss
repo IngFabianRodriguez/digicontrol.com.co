@@ -1,0 +1,190 @@
+.product {
+  background: var(--bg-primary);
+  transition: background 0.4s;
+
+  &__header {
+    text-align: center;
+    max-width: 580px;
+    margin: 0 auto clamp(48px, 8vw, 96px);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    color: var(--text-primary);
+    transition: color 0.4s;
+  }
+
+  &__subtitle {
+    font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    max-width: 460px;
+    margin: 0 auto;
+    transition: color 0.4s;
+  }
+
+  /* Bento Grid — asymmetric Apple layout */
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+
+    @media (max-width: 768px) { grid-template-columns: 1fr; }
+  }
+
+  &__card {
+    background: var(--bg-secondary);  // #f5f5f7 Apple grey — no border, no shadow by default
+    border: none;                     // No border — Apple bento style
+    border-radius: 22px;  // Apple Squircle
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    cursor: default;
+    transition:
+      transform 0.35s cubic-bezier(0.25, 0.1, 0.25, 1),
+      box-shadow 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
+
+    /* No shadow by default — Apple bento: elevation on hover only */
+    &:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* Featured cards span 2 columns (2x1) */
+    &--wide {
+      grid-column: span 2;
+      @media (max-width: 768px) { grid-column: span 1; }
+    }
+
+    &-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    &-icon { font-size: 2rem; }
+  }
+
+  &__card-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    transition: color 0.4s;
+  }
+
+  &__card-desc {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    flex: 1;
+    margin: 0;
+    transition: color 0.4s;
+  }
+
+  &__card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-accent);
+    text-decoration: none;
+    transition: gap 0.2s;
+
+    &:hover { gap: 10px; }
+  }
+
+  &__card-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  &__card-wpp {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 12px;
+    border-radius: 980px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.76rem;
+    font-weight: 600;
+    color: #ffffff;
+    background: #25D366;
+    border: none;
+    cursor: pointer;
+    transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+
+    &:hover {
+      background: #20bd5a;
+      transform: scale(1.03);
+      box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
+    }
+
+    &:active { transform: scale(0.97); }
+  }
+
+  &__banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-subtle);
+    border-radius: 24px;
+    padding: clamp(24px, 4vw, 40px) clamp(28px, 5vw, 48px);
+    margin-top: clamp(32px, 6vw, 64px);
+    transition: background 0.4s, border-color 0.4s;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: stretch;
+      text-align: center;
+    }
+  }
+
+  &__banner-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+
+    @media (max-width: 1199px) { justify-content: center; }
+    @media (max-width: 480px) { justify-content: center; }
+  }
+
+  &__banner-content { display: flex; flex-direction: column; gap: 8px; }
+
+  &__banner-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    transition: color 0.4s;
+  }
+
+  &__banner-text {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    max-width: 480px;
+    margin: 0;
+    line-height: 1.65;
+    transition: color 0.4s;
+  }
+}
